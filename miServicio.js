@@ -1,15 +1,12 @@
 import fs from "fs"
 
-const array = [2, 10, "a", 4, "b", 6, "d", true, "e", 9, 1, "z", 12, "r", "c", false]
-const condicion = "number"
-
 function funcionalidad(array, condicion) {
     // SI NO CUMPLE ALGUNA CONDICION, SIGUE EL CURSO 
     if (typeof condicion !== 'string' || !['number', 'string', 'boolean'].includes(condicion))
         return 'Error: Condición no válida.';
 
     // SI EL ARRAY NO ESTA VACÍO, SIGUE EL CURSO
-    if (nuevoArray.length === 0)
+    if (array.length === 0)
         return 'Error: No hay datos que coincidan con la condición.';
 
     //    Utilizo el filter, primero para comparar con el tipo de dato, luego agrego otra condicion para evaluar
@@ -20,9 +17,11 @@ function funcionalidad(array, condicion) {
     const arrayOrdenado = array.filter((e, index) => typeof e == condicion && array.indexOf(e) === index).sort((a, b) => a - b)
 
     // Si va todo Ok, procedo a guardar los datos del Array, en el txt
-    arrayOrdenado = nuevoArray.join('\n')
-    fs.writeFile('contenidoArray.txt', nuevoArray, (err) => { if (err) throw err; console.log('El archivo ha sido guardado!'); })
-    //Mostramos el contenido del .txt, para corroborar lo hecho    
+    const contenido = arrayOrdenado.join('\n').toString()
+    fs.writeFileSync('contenidoArray.txt', contenido)
     const file = fs.readFileSync('contenidoArray.txt', "utf-8")
     console.log(file)
+}
+export default {
+    funcionalidad
 }
