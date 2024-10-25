@@ -1,14 +1,15 @@
+import { error } from "console";
 import fs from "fs"
 
 function funcionalidad(array, condicion) {
     // SI NO CUMPLE ALGUNA CONDICION, SIGUE EL CURSO 
-    if (typeof condicion !== 'string' || !['number', 'string', 'boolean'].includes(condicion))
-        return 'Error: Condición no válida.';
-
+    if (typeof condicion !== 'string' || !['number', 'string', 'boolean'].includes(condicion)) {
+        throw new Error('Error: Condición no válida.');
+    }
     // SI EL ARRAY NO ESTA VACÍO, SIGUE EL CURSO
-    if (array.length === 0)
-        return 'Error: No hay datos que coincidan con la condición.';
-
+    if (array.length === 0) {
+        throw new Error('Error: No hay datos que coincidan con la condición.');
+    }
     //    Utilizo el filter, primero para comparar con el tipo de dato, luego agrego otra condicion para evaluar
     //  que el dato no este repetido, ya que el metod indexOf pregunta por la primera aparicion, si no coinciden los indices, 
     //  interpreta que ya fue agregado {array.filter(e,index)=> array.indexOf(e)===index}, evitando repetidos, y finalmente el array de 
